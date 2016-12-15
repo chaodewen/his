@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
-import zju.ccnt.mdsp.user.IUserMapper;
-import zju.ccnt.mdsp.user.User;
+import zju.ccnt.mdsp.model.user.IUserMapper;
+import zju.ccnt.mdsp.model.user.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,8 +49,8 @@ public class DbTest {
         SqlSession session = sqlSessionFactory.openSession();
         User user = null;
         try {
-            // 注意命名空间 zju.ccnt.mdsp.user.IUserMapper
-            user = session.selectOne("zju.ccnt.mdsp.user.IUserMapper.getUser", "xxxx-xxxx-xxxx-xxxx");
+            // 注意命名空间 IUserMapper
+            user = session.selectOne("IUserMapper.getUser", "xxxx-xxxx-xxxx-xxxx");
         } finally {
             session.close();
         }

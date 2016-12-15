@@ -1,4 +1,4 @@
-package zju.ccnt.mdsp.user;
+package zju.ccnt.mdsp.model.user;
 
 /**
  * Created by Cc on 2016/12/14.

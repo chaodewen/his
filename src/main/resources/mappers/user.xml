@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 命名空间：mapper接口全名 -->
-<mapper namespace="zju.ccnt.mdsp.user.IUserMapper">
+<mapper namespace="zju.ccnt.mdsp.model.user.IUserMapper">
 
     <!-- 主键查询 -->
     <select id="getUser" parameterType="String" resultType="User">

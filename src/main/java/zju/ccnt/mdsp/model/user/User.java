@@ -1,4 +1,4 @@
-package zju.ccnt.mdsp.user;
+package zju.ccnt.mdsp.model.user;
 
 import java.util.Date;
 
