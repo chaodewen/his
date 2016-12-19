@@ -7,6 +7,7 @@
     <class name="zju.ccnt.mdsp.mapping.SingleDrugItem" table="SingleDrugItem" schema="mdsp">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"/>
         </id>
         <property name="drugItemId">
             <column name="drugItemId" sql-type="int(11)" not-null="true"/>

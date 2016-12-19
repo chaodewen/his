@@ -38,7 +38,7 @@ CREATE TABLE SingleDrugItem
 (
     id INT AUTO_INCREMENT,
     drugItemId INT,
-    name VARCHAR(40),
+    name VARCHAR(40) NULL,
     purchaseUnit VARCHAR(40) NULL,
     purchaseQuantity FLOAT(6, 2) NULL,
     PRIMARY KEY (id),
