@@ -1,4 +1,3 @@
-# mdsp-transmitter
+# mdsp-his
 
-One part of out medical data security platform.
-This module transmits hospital data from HIS to the 3rd party.
+Simulation of a hostipal information system for medical data security system.
