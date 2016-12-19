@@ -1,34 +1,26 @@
 package zju.ccnt.mdsp.db;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  * Created by Cc on 2016/12/14.
  */
 
 public class MySqlSessionFactory {
-    private static SqlSessionFactory sqlSessionFactory = null;
+    private static SessionFactory sessionFactory;
 
-    public static SqlSessionFactory getInstance() {
-        if(sqlSessionFactory == null) {
+    public static SessionFactory getInstance() {
+        if(sessionFactory == null) {
             synchronized (MySqlSessionFactory.class) {
-                if(sqlSessionFactory == null) {
-                    String resource = "mybatis-config.xml";
-                    InputStream inputStream = null;
-                    try {
-                        inputStream = Resources.getResourceAsStream(resource);
-                        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if(sessionFactory == null) {
+                    // 默认读取hibernate.cfg.xml文件
+                    Configuration cfg = new Configuration().configure();
+                    // 建立SessionFactory
+                    sessionFactory = cfg.buildSessionFactory();
                 }
             }
         }
-        return sqlSessionFactory;
+        return sessionFactory;
     }
 }
