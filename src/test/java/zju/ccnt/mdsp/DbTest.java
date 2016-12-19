@@ -4,15 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
 import zju.ccnt.mdsp.mapping.DrugItem;
 import zju.ccnt.mdsp.mapping.Recipe;
 import zju.ccnt.mdsp.mapping.SingleDrugItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Cc on 2016/12/14.
@@ -86,6 +84,14 @@ public class DbTest {
 
     @Test
     public void testQuery() {
+        Recipe recipe = session.get(Recipe.class, Integer.valueOf(1));
+        System.out.println(recipe.getId());
+        System.out.println(recipe.getAddress());
+        System.out.println(recipe.getName());
+        System.out.println(recipe.getDiagnosis());
+        System.out.println(recipe.getRdate());
+        System.out.println(recipe.getDoctor());
+        Assert.assertEquals(recipe.getId(), 1);
     }
 
     @After
