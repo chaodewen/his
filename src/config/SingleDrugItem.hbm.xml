@@ -13,13 +13,13 @@
             <column name="drugItemId" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="name">
-            <column name="name" sql-type="varchar(40)" length="40" not-null="true"/>
+            <column name="name" sql-type="varchar(40)" length="40"/>
         </property>
         <property name="purchaseUnit">
-            <column name="purchaseUnit" sql-type="varchar(40)" length="40" not-null="true"/>
+            <column name="purchaseUnit" sql-type="varchar(40)" length="40"/>
         </property>
         <property name="purchaseQuantity">
-            <column name="purchaseQuantity" sql-type="float(6,2)" precision="6" scale="2" not-null="true"/>
+            <column name="purchaseQuantity" sql-type="float(6,2)" precision="6" scale="2"/>
         </property>
     </class>
 </hibernate-mapping>

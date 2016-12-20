@@ -1,10 +1,12 @@
 package zju.ccnt.mdsp.mapping;
 
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Dewayne on 2016/12/19.
+ * Created by Cc on 2016/12/20.
  */
+@Entity
 public class DrugItem {
     private int id;
     private Integer recipeId;
@@ -14,6 +16,8 @@ public class DrugItem {
     private String note;
     private Collection<SingleDrugItem> singleDrugItemsById;
 
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -22,6 +26,8 @@ public class DrugItem {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "recipeId", nullable = true)
     public Integer getRecipeId() {
         return recipeId;
     }
@@ -30,6 +36,8 @@ public class DrugItem {
         this.recipeId = recipeId;
     }
 
+    @Basic
+    @Column(name = "dosageUnit", nullable = true, length = 40)
     public String getDosageUnit() {
         return dosageUnit;
     }
@@ -38,6 +46,8 @@ public class DrugItem {
         this.dosageUnit = dosageUnit;
     }
 
+    @Basic
+    @Column(name = "dosageQuantity", nullable = true)
     public Integer getDosageQuantity() {
         return dosageQuantity;
     }
@@ -46,6 +56,8 @@ public class DrugItem {
         this.dosageQuantity = dosageQuantity;
     }
 
+    @Basic
+    @Column(name = "timePerDay", nullable = true)
     public Integer getTimePerDay() {
         return timePerDay;
     }
@@ -54,6 +66,8 @@ public class DrugItem {
         this.timePerDay = timePerDay;
     }
 
+    @Basic
+    @Column(name = "note", nullable = true, length = 40)
     public String getNote() {
         return note;
     }
@@ -91,6 +105,7 @@ public class DrugItem {
         return result;
     }
 
+    @OneToMany(mappedBy = "drugItemByDrugItemId")
     public Collection<SingleDrugItem> getSingleDrugItemsById() {
         return singleDrugItemsById;
     }

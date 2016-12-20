@@ -1,14 +1,17 @@
 package zju.ccnt.mdsp.mapping;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 
 /**
- * Created by Dewayne on 2016/12/19.
+ * Created by Cc on 2016/12/20.
  */
+@Entity
 public class Recipe {
     private int id;
-    private Date rdate;
+    private Integer userId;
+    private Date createdDate;
     private String name;
     private Integer gender;
     private Integer age;
@@ -20,6 +23,8 @@ public class Recipe {
     private String checker;
     private Collection<DrugItem> drugItemsById;
 
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -28,14 +33,28 @@ public class Recipe {
         this.id = id;
     }
 
-    public Date getRdate() {
-        return rdate;
+    @Basic
+    @Column(name = "userId", nullable = true)
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setRdate(Date rdate) {
-        this.rdate = rdate;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "createdDate", nullable = true)
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 40)
     public String getName() {
         return name;
     }
@@ -44,6 +63,8 @@ public class Recipe {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "gender", nullable = true)
     public Integer getGender() {
         return gender;
     }
@@ -52,6 +73,8 @@ public class Recipe {
         this.gender = gender;
     }
 
+    @Basic
+    @Column(name = "age", nullable = true)
     public Integer getAge() {
         return age;
     }
@@ -60,6 +83,8 @@ public class Recipe {
         this.age = age;
     }
 
+    @Basic
+    @Column(name = "recordId", nullable = true, length = 40)
     public String getRecordId() {
         return recordId;
     }
@@ -68,6 +93,8 @@ public class Recipe {
         this.recordId = recordId;
     }
 
+    @Basic
+    @Column(name = "address", nullable = true, length = 40)
     public String getAddress() {
         return address;
     }
@@ -76,6 +103,8 @@ public class Recipe {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "diagnosis", nullable = true, length = 40)
     public String getDiagnosis() {
         return diagnosis;
     }
@@ -84,6 +113,8 @@ public class Recipe {
         this.diagnosis = diagnosis;
     }
 
+    @Basic
+    @Column(name = "doctor", nullable = true, length = 40)
     public String getDoctor() {
         return doctor;
     }
@@ -92,6 +123,8 @@ public class Recipe {
         this.doctor = doctor;
     }
 
+    @Basic
+    @Column(name = "charge", nullable = true, precision = 2)
     public Double getCharge() {
         return charge;
     }
@@ -100,6 +133,8 @@ public class Recipe {
         this.charge = charge;
     }
 
+    @Basic
+    @Column(name = "checker", nullable = true, length = 40)
     public String getChecker() {
         return checker;
     }
@@ -116,7 +151,8 @@ public class Recipe {
         Recipe recipe = (Recipe) o;
 
         if (id != recipe.id) return false;
-        if (rdate != null ? !rdate.equals(recipe.rdate) : recipe.rdate != null) return false;
+        if (userId != null ? !userId.equals(recipe.userId) : recipe.userId != null) return false;
+        if (createdDate != null ? !createdDate.equals(recipe.createdDate) : recipe.createdDate != null) return false;
         if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
         if (gender != null ? !gender.equals(recipe.gender) : recipe.gender != null) return false;
         if (age != null ? !age.equals(recipe.age) : recipe.age != null) return false;
@@ -133,7 +169,8 @@ public class Recipe {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (rdate != null ? rdate.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
@@ -146,6 +183,7 @@ public class Recipe {
         return result;
     }
 
+    @OneToMany(mappedBy = "recipeByRecipeId")
     public Collection<DrugItem> getDrugItemsById() {
         return drugItemsById;
     }

@@ -1,8 +1,14 @@
 package zju.ccnt.mdsp.mapping;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
- * Created by Dewayne on 2016/12/19.
+ * Created by Cc on 2016/12/20.
  */
+@Entity
 public class SingleDrugItem {
     private int id;
     private Integer drugItemId;
@@ -10,6 +16,8 @@ public class SingleDrugItem {
     private String purchaseUnit;
     private Double purchaseQuantity;
 
+    @Id
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -18,6 +26,8 @@ public class SingleDrugItem {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "drugItemId", nullable = true)
     public Integer getDrugItemId() {
         return drugItemId;
     }
@@ -26,6 +36,8 @@ public class SingleDrugItem {
         this.drugItemId = drugItemId;
     }
 
+    @Basic
+    @Column(name = "name", nullable = true, length = 40)
     public String getName() {
         return name;
     }
@@ -34,6 +46,8 @@ public class SingleDrugItem {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "purchaseUnit", nullable = true, length = 40)
     public String getPurchaseUnit() {
         return purchaseUnit;
     }
@@ -42,6 +56,8 @@ public class SingleDrugItem {
         this.purchaseUnit = purchaseUnit;
     }
 
+    @Basic
+    @Column(name = "purchaseQuantity", nullable = true, precision = 2)
     public Double getPurchaseQuantity() {
         return purchaseQuantity;
     }

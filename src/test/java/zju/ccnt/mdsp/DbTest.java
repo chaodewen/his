@@ -11,6 +11,7 @@ import zju.ccnt.mdsp.db.MySqlSessionFactory;
 import zju.ccnt.mdsp.mapping.DrugItem;
 import zju.ccnt.mdsp.mapping.Recipe;
 import zju.ccnt.mdsp.mapping.SingleDrugItem;
+import zju.ccnt.mdsp.mapping.User;
 
 /**
  * Created by Cc on 2016/12/14.
@@ -31,8 +32,16 @@ public class DbTest {
 
     @Test
     public void testInsertion() {
+        User user = new User();
+        user.setName("生病的人");
+        user.setAge(18);
+        user.setEmail("patient@hospital.com");
+        user.setIdcard("610402200000000000");
+        session.save(user);
+
         Recipe recipe = new Recipe();
-        recipe.setRdate(Utils.genSqlDate());
+        recipe.setUserId(user.getId());
+        recipe.setCreatedDate(Utils.genSqlDate());
         recipe.setName("abc");
         recipe.setGender(0);
         recipe.setRecordId("1234567");
@@ -89,7 +98,7 @@ public class DbTest {
         System.out.println(recipe.getAddress());
         System.out.println(recipe.getName());
         System.out.println(recipe.getDiagnosis());
-        System.out.println(recipe.getRdate());
+        System.out.println(recipe.getCreatedDate());
         System.out.println(recipe.getDoctor());
         Assert.assertEquals(recipe.getId(), 1);
     }
