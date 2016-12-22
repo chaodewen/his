@@ -42,7 +42,7 @@
         <property name="checker">
             <column name="checker" sql-type="varchar(40)" length="40"/>
         </property>
-        <set name="drugItemsById" inverse="true">
+        <set name="drugItemsById" inverse="true" lazy="false">
             <key>
                 <column name="recipeId"/>
             </key>

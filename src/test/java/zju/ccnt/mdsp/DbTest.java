@@ -100,6 +100,8 @@ public class DbTest {
         System.out.println(recipe.getDiagnosis());
         System.out.println(recipe.getCreatedDate());
         System.out.println(recipe.getDoctor());
+        for(DrugItem di : recipe.getDrugItemsById())
+            System.out.println(di.getId());
         Assert.assertEquals(recipe.getId(), 1);
     }
 

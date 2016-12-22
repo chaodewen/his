@@ -24,7 +24,7 @@
         <property name="note">
             <column name="note" sql-type="varchar(40)" length="40"/>
         </property>
-        <set name="singleDrugItemsById" inverse="true">
+        <set name="singleDrugItemsById" inverse="true" lazy="false">
             <key>
                 <column name="drugItemId"/>
             </key>

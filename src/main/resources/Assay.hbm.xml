@@ -48,7 +48,7 @@
         <property name="finishedDate">
             <column name="finishedDate" sql-type="date"/>
         </property>
-        <set name="assayItemsById" inverse="true">
+        <set name="assayItemsById" inverse="true" lazy="false">
             <key>
                 <column name="assayId"/>
             </key>
