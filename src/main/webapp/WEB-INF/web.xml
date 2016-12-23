@@ -52,7 +52,7 @@
     <!-- 跨域访问配置 -->
     <!--<filter>-->
     <!--<filter-name>corsFilter</filter-name>-->
-    <!--<filter-class>zju.ccnt.mdsp.springmvc.filter.CorsFilter</filter-class>-->
+    <!--<filter-class>CorsFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
     <!--<filter-name>corsFilter</filter-name>-->

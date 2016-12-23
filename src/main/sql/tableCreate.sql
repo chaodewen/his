@@ -11,14 +11,14 @@ DROP TABLE IF EXISTS SingleDrugItem;
 
 CREATE TABLE User
 (
-  id       INT AUTO_INCREMENT,
+  id       INT              AUTO_INCREMENT,
   name     VARCHAR(40) NULL,
   age      INT         NULL,
   idcard   VARCHAR(40) NULL,
   password VARCHAR(40) NULL,
-  phone    INT         NULL,
+  phone    VARCHAR(40) NULL,
   email    VARCHAR(40) NULL,
-  created  DATE        NULL,
+  created  TIMESTAMP   NULL DEFAULT current_timestamp,
   PRIMARY KEY (id)
 )
   ENGINE = InnoDB
@@ -52,6 +52,7 @@ CREATE TABLE AssayItem (
   id        INT AUTO_INCREMENT,
   assayId   INT,
   name      VARCHAR(40) NULL,
+  code      VARCHAR(40),
   result    VARCHAR(40) NULL,
   hint      VARCHAR(40) NULL,
   reference VARCHAR(40) NULL,
@@ -83,6 +84,13 @@ CREATE TABLE Recipe
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = UTF8;
+
+# DROP TRIGGER IF EXISTS update_recipe;
+# CREATE TRIGGER update_recipe AFTER INSERT ON Recipe FOR EACH ROW BEGIN
+#   UPDATE Recipe, User
+#   SET new.name = User.name AND new.age = User.age
+#   WHERE new.userId = User.id;
+# END;
 
 CREATE TABLE DrugItem
 (

@@ -8,10 +8,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
-import zju.ccnt.mdsp.mapping.DrugItem;
-import zju.ccnt.mdsp.mapping.Recipe;
-import zju.ccnt.mdsp.mapping.SingleDrugItem;
-import zju.ccnt.mdsp.mapping.User;
+import zju.ccnt.mdsp.model.DrugItem;
+import zju.ccnt.mdsp.model.Recipe;
+import zju.ccnt.mdsp.model.SingleDrugItem;
+import zju.ccnt.mdsp.model.User;
 
 /**
  * Created by Cc on 2016/12/14.
@@ -41,7 +41,6 @@ public class DbTest {
 
         Recipe recipe = new Recipe();
         recipe.setUserId(user.getId());
-        recipe.setCreatedDate(Utils.genSqlDate());
         recipe.setName("abc");
         recipe.setGender(0);
         recipe.setRecordId("1234567");

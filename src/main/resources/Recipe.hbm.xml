@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="zju.ccnt.mdsp.mapping.Recipe" table="Recipe" schema="mdsp">
+    <class name="zju.ccnt.mdsp.model.Recipe" table="Recipe" schema="mdsp">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
             <generator class="native"/>
@@ -46,7 +46,7 @@
             <key>
                 <column name="recipeId"/>
             </key>
-            <one-to-many not-found="ignore" class="zju.ccnt.mdsp.mapping.DrugItem"/>
+            <one-to-many not-found="ignore" class="zju.ccnt.mdsp.model.DrugItem"/>
         </set>
     </class>
 </hibernate-mapping>

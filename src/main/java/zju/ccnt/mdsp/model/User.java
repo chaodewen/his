@@ -1,11 +1,11 @@
-package zju.ccnt.mdsp.mapping;
+package zju.ccnt.mdsp.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by Cc on 2016/12/20.
+ * Created by Cc on 2016/12/23.
  */
 @Entity
 public class User {
@@ -14,9 +14,9 @@ public class User {
     private Integer age;
     private String idcard;
     private String password;
-    private Integer phone;
+    private String phone;
     private String email;
-    private Date created;
+    private Timestamp created;
     private Collection<Assay> assaysById;
     private Collection<Recipe> recipesById;
 
@@ -71,12 +71,12 @@ public class User {
     }
 
     @Basic
-    @Column(name = "phone", nullable = true)
-    public Integer getPhone() {
+    @Column(name = "phone", nullable = true, length = 40)
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -92,11 +92,11 @@ public class User {
 
     @Basic
     @Column(name = "created", nullable = true)
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 

@@ -1,4 +1,4 @@
-package zju.ccnt.mdsp.mapping;
+package zju.ccnt.mdsp.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Cc on 2016/12/20.
+ * Created by Cc on 2016/12/23.
  */
 @Entity
 public class SingleDrugItem {

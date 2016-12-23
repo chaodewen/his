@@ -16,11 +16,11 @@
     <mapping resource="AssayItem.hbm.xml"/>
     <mapping resource="User.hbm.xml"/>
     <mapping resource="Recipe.hbm.xml"/>
-    <mapping class="zju.ccnt.mdsp.mapping.DrugItem"/>
-    <mapping class="zju.ccnt.mdsp.mapping.SingleDrugItem"/>
-    <mapping class="zju.ccnt.mdsp.mapping.Assay"/>
-    <mapping class="zju.ccnt.mdsp.mapping.AssayItem"/>
-    <mapping class="zju.ccnt.mdsp.mapping.User"/>
-    <mapping class="zju.ccnt.mdsp.mapping.Recipe"/>
+    <mapping class="zju.ccnt.mdsp.model.DrugItem"/>
+    <mapping class="zju.ccnt.mdsp.model.SingleDrugItem"/>
+    <mapping class="zju.ccnt.mdsp.model.Assay"/>
+    <mapping class="zju.ccnt.mdsp.model.AssayItem"/>
+    <mapping class="zju.ccnt.mdsp.model.User"/>
+    <mapping class="zju.ccnt.mdsp.model.Recipe"/>
   </session-factory>
 </hibernate-configuration>

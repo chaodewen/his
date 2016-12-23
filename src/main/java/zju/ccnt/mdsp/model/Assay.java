@@ -1,11 +1,11 @@
-package zju.ccnt.mdsp.mapping;
+package zju.ccnt.mdsp.model;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 
 /**
- * Created by Cc on 2016/12/20.
+ * Created by Cc on 2016/12/23.
  */
 @Entity
 public class Assay {
