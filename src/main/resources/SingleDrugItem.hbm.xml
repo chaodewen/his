@@ -12,8 +12,8 @@
         <property name="drugItemId">
             <column name="drugItemId" sql-type="int(11)" not-null="true"/>
         </property>
-        <property name="name">
-            <column name="name" sql-type="varchar(40)" length="40"/>
+        <property name="itemName">
+            <column name="itemName" sql-type="varchar(40)" length="40"/>
         </property>
         <property name="purchaseUnit">
             <column name="purchaseUnit" sql-type="varchar(40)" length="40"/>

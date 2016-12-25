@@ -14,7 +14,7 @@ INSERT INTO Assay (userId, event, patient, sample, gender, department, age
   (3, '血常规', '宗博文', '血清', 1, '内科', 28, '檀学文', '姚磊', '吕宗凯'
     , '个别指标偏低', date('2013-03-02'), date('2013-03-02'));
 
-INSERT INTO AssayItem (assayId, name, code, result, hint, reference, unit) VALUES
+INSERT INTO AssayItem (assayId, itemName, code, result, hint, reference, unit) VALUES
   (1, '雌二醇', 'E2', '237.30', '↑', '卵泡期:(12.5~166) 排卵期:(85.8~498)', 'pg/ml'),
   (1, '孕酮', 'Prog', '21.82', '↑', '卵泡期:(0,2~1.5) 排卵期:(0.8~3.0)', 'ng/ml'),
   (1, '人绒毛膜促性腺激素β', 'β-HCG', '1770.00', '↑', '≤2', 'mIU/ml'),
@@ -29,7 +29,7 @@ INSERT INTO AssayItem (assayId, name, code, result, hint, reference, unit) VALUE
   (3, '天门冬/丙氨酸', 'ST/LT', '1.3', '↑', '0.0-1.0', ''),
   (3, '碱性磷酸酶', 'ALP', '65.0', '', '50-135', 'U/L');
 
-INSERT INTO Recipe (userId, name, createdDate, gender, age, address, diagnosis, doctor, charge, checker) VALUES
+INSERT INTO Recipe (userId, patient, createdDate, gender, age, address, diagnosis, doctor, charge, checker) VALUES
   (1, '赵华', date('2015-12-23'), 0, 17, '山东省莱芜市', '急性肠胃炎', '张健雨', 365.4, '杨明远'),
   (1, '赵华', date('2016-11-08'), 0, 18, '莱芜', '急性肠胃炎,服用康泰', '张晨', 278.0, '蔡玮'),
   (2, '张斯睿', date('2015-06-17'), 1, 55, '宁波北仑', '季节性感冒', '孟奇', 56.8, '何长久'),
@@ -47,7 +47,7 @@ INSERT INTO DrugItem (recipeId, dosageUnit, dosageQuantity, timePerDay, note) VA
   (4, '粒', 8, 3, '温水送服'),
   (4, '贴', 1, 1, '每晚睡前帖于肚脐处,起床时拿掉');
 
-INSERT INTO SingleDrugItem (drugItemId, name, purchaseUnit, purchaseQuantity) VALUES
+INSERT INTO SingleDrugItem (drugItemId, itemName, purchaseUnit, purchaseQuantity) VALUES
   (1, '藿香', '克', 30),
   (1, '甘草', '克', 15),
   (1, '藏红花', '克', 25),

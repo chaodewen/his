@@ -12,8 +12,11 @@
         <property name="assayId">
             <column name="assayId" sql-type="int(11)" not-null="true"/>
         </property>
-        <property name="name">
-            <column name="name" sql-type="varchar(40)" length="40"/>
+        <property name="itemName">
+            <column name="itemName" sql-type="varchar(40)" length="40"/>
+        </property>
+        <property name="code">
+            <column name="code" sql-type="varchar(40)" length="40"/>
         </property>
         <property name="result">
             <column name="result" sql-type="varchar(40)" length="40"/>

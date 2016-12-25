@@ -41,7 +41,7 @@ public class DbTest {
 
         Recipe recipe = new Recipe();
         recipe.setUserId(user.getId());
-        recipe.setName("abc");
+        recipe.setPatient("abc");
         recipe.setGender(0);
         recipe.setRecordId("1234567");
         recipe.setAddress("浙江大学玉泉校区");
@@ -69,21 +69,21 @@ public class DbTest {
         session.save(di2);
 
         SingleDrugItem sdi1 = new SingleDrugItem();
-        sdi1.setName("当归");
+        sdi1.setItemName("当归");
         sdi1.setPurchaseQuantity(new Double(10));
         sdi1.setPurchaseUnit("克");
         sdi1.setDrugItemId(di1.getId());
         session.save(sdi1);
 
         SingleDrugItem sdi2 = new SingleDrugItem();
-        sdi2.setName("枸杞");
+        sdi2.setItemName("枸杞");
         sdi2.setPurchaseQuantity(new Double(5));
         sdi2.setPurchaseUnit("克");
         sdi2.setDrugItemId(di1.getId());
         session.save(sdi2);
 
         SingleDrugItem sdi3 = new SingleDrugItem();
-        sdi3.setName("银翘片");
+        sdi3.setItemName("银翘片");
         sdi3.setPurchaseQuantity(new Double(2));
         sdi3.setPurchaseUnit("袋");
         sdi3.setDrugItemId(di2.getId());
@@ -95,7 +95,7 @@ public class DbTest {
         Recipe recipe = session.get(Recipe.class, Integer.valueOf(1));
         System.out.println(recipe.getId());
         System.out.println(recipe.getAddress());
-        System.out.println(recipe.getName());
+        System.out.println(recipe.getPatient());
         System.out.println(recipe.getDiagnosis());
         System.out.println(recipe.getCreatedDate());
         System.out.println(recipe.getDoctor());
