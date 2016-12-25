@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
 import zju.ccnt.mdsp.model.Recipe;
+import zju.ccnt.mdsp.utils.Utils;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -25,7 +26,8 @@ public class RecipeService {
             recipe = session.get(Recipe.class, id);
         } catch (NoResultException e) {
             System.out.println("---> getRecipe() : id = NoResult");
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }
@@ -45,7 +47,8 @@ public class RecipeService {
                     + userId).getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getRecipes() : userId = NoResult");
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }

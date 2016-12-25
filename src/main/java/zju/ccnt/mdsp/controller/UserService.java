@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
 import zju.ccnt.mdsp.model.User;
+import zju.ccnt.mdsp.utils.Utils;
 
 import javax.persistence.NoResultException;
 
@@ -23,8 +24,9 @@ public class UserService {
         try {
             user = session.get(User.class, id);
         } catch (NoResultException e) {
-            System.out.println("---> getUser() : id = " + user.getId());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            System.out.println("---> getUser() : id = NoResult");
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }
@@ -43,7 +45,8 @@ public class UserService {
                     "SELECT id FROM User WHERE idcard = " + idcard).getSingleResult();
         } catch (NoResultException e) {
             System.out.println("---> getId() : id = NoResult");
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }

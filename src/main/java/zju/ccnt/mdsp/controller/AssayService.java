@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
 import zju.ccnt.mdsp.model.Assay;
+import zju.ccnt.mdsp.utils.Utils;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -25,7 +26,8 @@ public class AssayService {
             assay = session.get(Assay.class, id);
         } catch (NoResultException e) {
             System.out.println("---> getAssay() : id = NoResult");
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }
@@ -45,7 +47,8 @@ public class AssayService {
                     + userId).getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getAssays() : userId = NoResult");
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
         } finally {
             session.close();
         }
