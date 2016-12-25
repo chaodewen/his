@@ -17,4 +17,4 @@ Simulation of a hostipal information system for medical data security system.
 2. IDEA的Persistence插件生成的*.hbm.xml中字段始终为NOT NULL；
 3. 遇到部分字段Lazy加载的问题可以在获取对象方法的注解中加入fetch = FetchType.EAGER；
 4. 上述问题还有一种解决方法，在*.hbm.xml中对应标签中加入lazy="false"关闭Lazy加载；
-5. Hibernate的one-to-many映射时，如果使用list需要设置index方法，可以在*.hbm.xml的list标签中加入“<index column="id" type="java.lang.Integer"/>”。
+5. Hibernate的one-to-many映射时，如果使用list需要设置index方法，可以在*.hbm.xml的list标签中加入index标签。
