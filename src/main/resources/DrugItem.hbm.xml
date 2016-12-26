@@ -26,7 +26,7 @@
         </property>
         <list name="singleDrugItemsById" inverse="true" lazy="false">
             <key>
-                <column name="drugItemId" not-null="true"/>
+                <column name="drugItemId"/>
             </key>
             <index column="id" type="java.lang.Integer"/>
             <one-to-many not-found="ignore" class="zju.ccnt.mdsp.model.SingleDrugItem"/>

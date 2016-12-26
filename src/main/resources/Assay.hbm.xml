@@ -50,7 +50,7 @@
         </property>
         <list name="assayItemsById" inverse="true" lazy="false">
             <key>
-                <column name="assayId" not-null="true"/>
+                <column name="assayId"/>
             </key>
             <index column="id" type="java.lang.Integer"/>
             <one-to-many not-found="ignore" class="zju.ccnt.mdsp.model.AssayItem"/>

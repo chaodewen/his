@@ -39,7 +39,7 @@
         </list>
         <list name="assaysById" inverse="true" lazy="false">
             <key>
-                <column name="userId" not-null="true"/>
+                <column name="userId"/>
             </key>
             <index column="id" type="java.lang.Integer"/>
             <one-to-many not-found="ignore" class="zju.ccnt.mdsp.model.Assay"/>
