@@ -37,7 +37,6 @@ public class RecipeService {
 
         return ResponseEntity.ok(recipe);
     }
-
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
     public ResponseEntity<List<Recipe>> getRecipes(@RequestParam("userId") int userId) {
         Session session = MySqlSessionFactory.getInstance().openSession();

@@ -44,19 +44,40 @@ public class UserService {
             id = (Integer) session.createNativeQuery(
                     "SELECT id FROM User WHERE idcard = " + idcard).getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("---> getId() : id = NoResult");
+            System.out.println("---> getId() : idcard = NoResult");
             return Utils.genErrorResponse(HttpStatus.NOT_FOUND
                     , "Not Found");
         } finally {
             session.close();
         }
 
-        System.out.println("---> getId() : id = " + id);
+        System.out.println("---> getId() : idcard = " + idcard);
 
         User user = new User();
         user.setId(id);
         user.setIdcard(idcard);
 
+
+        return ResponseEntity.ok(user);
+    }
+    @RequestMapping(value = "/users/essentials/{id}", method = RequestMethod.GET)
+    public ResponseEntity<User> getEssentialUser(@PathVariable("id") int id) {
+        Session session = MySqlSessionFactory.getInstance().openSession();
+
+        User user;
+        try {
+            user = session.get(User.class, id);
+            user.setRecipesById(null);
+            user.setAssaysById(null);
+        } catch (NoResultException e) {
+            System.out.println("---> getEssentialUser() : id = NoResult");
+            return Utils.genErrorResponse(HttpStatus.NOT_FOUND
+                    , "Not Found");
+        } finally {
+            session.close();
+        }
+
+        System.out.println("---> getEssentialUser() : id = " + id);
 
         return ResponseEntity.ok(user);
     }
