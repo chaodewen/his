@@ -38,7 +38,10 @@ public class AssayService {
     }
 
     @RequestMapping(value = "/assays", method = RequestMethod.GET)
-    public ResponseEntity<List<Assay>> getAssays(@RequestParam("userId") int userId) {
+    public ResponseEntity<List<Assay>> getAssays(
+            @RequestParam("userId") int userId
+            , @RequestParam(value = "start", defaultValue = "default") String start
+            , @RequestParam(value = "end", defaultValue = "default") String end) {
         Session session = MySqlSessionFactory.getInstance().openSession();
 
         List<Assay> assays;
