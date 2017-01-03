@@ -47,7 +47,7 @@ public class AssayService {
         List<Assay> assays;
         try {
             String sql = "FROM Assay WHERE userId = " + userId;
-            Query query = Utils.getQueryBySql(session, sql, start, end);
+            Query query = Utils.getQueryBySql(session, sql, "finishedDate", start, end);
             assays = query.getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getAssays() : userId = NoResult");

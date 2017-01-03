@@ -29,22 +29,22 @@ public class Utils {
         return null;
     }
     public static Query getQueryBySql(Session session, String sql
-            , String start, String end) {
+            , String timeItem, String start, String end) {
         if(!"default".equals(start) && !"default".equals(end)) {
-            sql += " AND createdDate >= ? AND createdDate <= ?";
+            sql += " AND " + timeItem + " >= ? AND " + timeItem + " <= ?";
             Query query = session.createQuery(sql);
             query.setParameter(0, Utils.getDate(start));
             query.setParameter(1, Utils.getDate(end));
             return query;
         }
         else if(!"default".equals(start)) {
-            sql += " AND createdDate >= ?";
+            sql += " AND " + timeItem + " >= ?";
             Query query = session.createQuery(sql);
             query.setParameter(0, Utils.getDate(start));
             return query;
         }
         else if(!"default".equals(end)) {
-            sql += " AND createdDate <= ?";
+            sql += " AND " + timeItem + " <= ?";
             Query query = session.createQuery(sql);
             query.setParameter(0, Utils.getDate(end));
             return query;

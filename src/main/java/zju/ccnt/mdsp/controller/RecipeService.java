@@ -46,7 +46,7 @@ public class RecipeService {
         List<Recipe> recipes;
         try {
             String sql = "FROM Recipe WHERE userId = " + userId;
-            Query query = Utils.getQueryBySql(session, sql, start, end);
+            Query query = Utils.getQueryBySql(session, sql, "createdDate", start, end);
             recipes = query.getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getRecipes() : userId = NoResult");
