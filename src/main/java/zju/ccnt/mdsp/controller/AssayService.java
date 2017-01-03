@@ -38,16 +38,21 @@ public class AssayService {
     }
 
     @RequestMapping(value = "/assays", method = RequestMethod.GET)
-    public ResponseEntity<List<Assay>> getAssays(
-            @RequestParam("userId") int userId
+    public ResponseEntity<List<Assay>> getAssays(@RequestParam("userId") int userId
             , @RequestParam(value = "start", defaultValue = "default") String start
             , @RequestParam(value = "end", defaultValue = "default") String end) {
         Session session = MySqlSessionFactory.getInstance().openSession();
 
         List<Assay> assays;
         try {
-            assays = session.createQuery("FROM Assay WHERE userId = "
-                    + userId).getResultList();
+            String sql = "FROM Assay WHERE userId = " + userId;
+            if(!"default".equals(start)) {
+                sql += " AND finishedDate >= " + start;
+            }
+            if(!"default".equals(end)) {
+                sql += " AND finishedDate <= " + end;
+            }
+            assays = session.createQuery(sql).getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getAssays() : userId = NoResult");
             return Utils.genErrorResponse(HttpStatus.NOT_FOUND

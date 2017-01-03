@@ -1,6 +1,7 @@
 package zju.ccnt.mdsp.controller;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,13 +39,37 @@ public class RecipeService {
         return ResponseEntity.ok(recipe);
     }
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
-    public ResponseEntity<List<Recipe>> getRecipes(@RequestParam("userId") int userId) {
+    public ResponseEntity<List<Recipe>> getRecipes(@RequestParam("userId") int userId
+            , @RequestParam(value = "start", defaultValue = "default") String start
+            , @RequestParam(value = "end", defaultValue = "default") String end) {
         Session session = MySqlSessionFactory.getInstance().openSession();
 
         List<Recipe> recipes;
         try {
-            recipes = session.createQuery("FROM Recipe WHERE userId = "
-                    + userId).getResultList();
+            String sql = "FROM Recipe WHERE userId = " + userId;
+            if(!"default".equals(start) && !"default".equals(end)) {
+                sql += " AND createdDate >= ? AND createdDate <= ?";
+                Query query = session.createQuery(sql);
+                query.setParameter(0, Utils.getDate(start));
+                query.setParameter(1, Utils.getDate(end));
+                recipes = query.getResultList();
+            }
+            else if(!"default".equals(start)) {
+                sql += " AND createdDate >= ?";
+                Query query = session.createQuery(sql);
+                query.setParameter(0, Utils.getDate(start));
+                recipes = query.getResultList();
+            }
+            else if(!"default".equals(end)) {
+                sql += " AND createdDate <= ?";
+                Query query = session.createQuery(sql);
+                query.setParameter(0, Utils.getDate(end));
+                recipes = query.getResultList();
+            }
+            else {
+                Query query = session.createQuery(sql);
+                recipes = query.getResultList();
+            }
         } catch (NoResultException e) {
             System.out.println("---> getRecipes() : userId = NoResult");
             return Utils.genErrorResponse(HttpStatus.NOT_FOUND

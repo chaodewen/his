@@ -104,6 +104,9 @@ public class DbTest {
         Assert.assertEquals(recipe.getId(), 1);
     }
 
+    @Test
+    public void test
+
     @After
     public void close() {
         transaction.commit();
