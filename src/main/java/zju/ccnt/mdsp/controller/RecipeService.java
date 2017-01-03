@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zju.ccnt.mdsp.db.MySqlSessionFactory;
-import zju.ccnt.mdsp.model.DrugItem;
 import zju.ccnt.mdsp.model.Recipe;
 import zju.ccnt.mdsp.utils.Utils;
 
@@ -47,29 +46,8 @@ public class RecipeService {
         List<Recipe> recipes;
         try {
             String sql = "FROM Recipe WHERE userId = " + userId;
-            if(!"default".equals(start) && !"default".equals(end)) {
-                sql += " AND createdDate >= ? AND createdDate <= ?";
-                Query query = session.createQuery(sql);
-                query.setParameter(0, Utils.getDate(start));
-                query.setParameter(1, Utils.getDate(end));
-                recipes = query.getResultList();
-            }
-            else if(!"default".equals(start)) {
-                sql += " AND createdDate >= ?";
-                Query query = session.createQuery(sql);
-                query.setParameter(0, Utils.getDate(start));
-                recipes = query.getResultList();
-            }
-            else if(!"default".equals(end)) {
-                sql += " AND createdDate <= ?";
-                Query query = session.createQuery(sql);
-                query.setParameter(0, Utils.getDate(end));
-                recipes = query.getResultList();
-            }
-            else {
-                Query query = session.createQuery(sql);
-                recipes = query.getResultList();
-            }
+            Query query = Utils.getQueryBySql(session, sql, start, end);
+            recipes = query.getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getRecipes() : userId = NoResult");
             return Utils.genErrorResponse(HttpStatus.NOT_FOUND

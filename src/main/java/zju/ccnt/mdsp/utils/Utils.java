@@ -1,5 +1,7 @@
 package zju.ccnt.mdsp.utils;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -25,5 +27,31 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+    public static Query getQueryBySql(Session session, String sql
+            , String start, String end) {
+        if(!"default".equals(start) && !"default".equals(end)) {
+            sql += " AND createdDate >= ? AND createdDate <= ?";
+            Query query = session.createQuery(sql);
+            query.setParameter(0, Utils.getDate(start));
+            query.setParameter(1, Utils.getDate(end));
+            return query;
+        }
+        else if(!"default".equals(start)) {
+            sql += " AND createdDate >= ?";
+            Query query = session.createQuery(sql);
+            query.setParameter(0, Utils.getDate(start));
+            return query;
+        }
+        else if(!"default".equals(end)) {
+            sql += " AND createdDate <= ?";
+            Query query = session.createQuery(sql);
+            query.setParameter(0, Utils.getDate(end));
+            return query;
+        }
+        else {
+            Query query = session.createQuery(sql);
+            return query;
+        }
     }
 }

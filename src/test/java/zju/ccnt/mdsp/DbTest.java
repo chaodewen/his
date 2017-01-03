@@ -3,6 +3,7 @@ package zju.ccnt.mdsp;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +13,9 @@ import zju.ccnt.mdsp.model.DrugItem;
 import zju.ccnt.mdsp.model.Recipe;
 import zju.ccnt.mdsp.model.SingleDrugItem;
 import zju.ccnt.mdsp.model.User;
+import zju.ccnt.mdsp.utils.Utils;
+
+import java.util.List;
 
 /**
  * Created by Cc on 2016/12/14.
@@ -105,7 +109,17 @@ public class DbTest {
     }
 
     @Test
-    public void test
+    public void testTimeQuery() {
+        String sql = "FROM Recipe WHERE userId = " + 1;
+        sql += " AND createdDate >= ? AND createdDate <= ?";
+        Query query = session.createQuery(sql);
+        query.setParameter(0, Utils.getDate("2015-01-01"));
+        query.setParameter(1, Utils.getDate("2017-01-01"));
+        List<Recipe> recipes = query.getResultList();
+        for(Recipe recipe : recipes) {
+            System.out.println(recipe.getId() + " : " + recipe.getPatient());
+        }
+    }
 
     @After
     public void close() {

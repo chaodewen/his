@@ -1,6 +1,7 @@
 package zju.ccnt.mdsp.controller;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +47,8 @@ public class AssayService {
         List<Assay> assays;
         try {
             String sql = "FROM Assay WHERE userId = " + userId;
-            if(!"default".equals(start)) {
-                sql += " AND finishedDate >= " + start;
-            }
-            if(!"default".equals(end)) {
-                sql += " AND finishedDate <= " + end;
-            }
-            assays = session.createQuery(sql).getResultList();
+            Query query = Utils.getQueryBySql(session, sql, start, end);
+            assays = query.getResultList();
         } catch (NoResultException e) {
             System.out.println("---> getAssays() : userId = NoResult");
             return Utils.genErrorResponse(HttpStatus.NOT_FOUND
